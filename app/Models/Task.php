@@ -9,14 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        'task_name',
-        'priority',
-        'expiration_date',
-        'is_done'
-    ];
-
-    protected $fillables = [
+    protected $fillable = [
         'task_name',
         'priority',
         'expiration_date',

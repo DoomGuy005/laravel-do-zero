@@ -10,8 +10,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        if (count($tasks) <= 0) {
-            return response()->json(['macaco' => 'tem nada aqui não fi.'], 404);
+        if (count($tasks) == 0) {
+            return response()->json(['erro' => 'não há tarefas cadastradas.'], 404);
         }
         return $tasks;
     }
@@ -24,7 +24,10 @@ class TaskController extends Controller
 
     public function show(Task $task, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+        if (!$task) {
+            return response()->json(['erro' => 'essa tarefa não existe.'], 404);
+        }
         return $task;
     }
 
